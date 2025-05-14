@@ -20,7 +20,7 @@ echo "Pulling image $IMAGE_NAME..."
 OUTPUT=$(docker pull $REGISTRY_URL/$IMAGE_NAME:$LOCAL_TAG)
 
 # Check if there was an error during the pull
-if echo "$OUTPUT" | grep -q "error"; then
+if echo "$OUTPUT" | grep -q "Error"; then
     echo "Error occurred while pulling the image:"
     echo "$OUTPUT"
     exit 1
