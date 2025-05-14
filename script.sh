@@ -9,7 +9,7 @@ fi
 set -x # Enable debugging
 # تنظیمات
 IMAGE_NAME="nginx"
-LOCAL_TAG="latest"
+LOCAL_TAG="ppp"
 DOCKER_COMPOSE_FILE="docker-compose.yml"
 
 # دریافت تگ جدید از رجیستری
