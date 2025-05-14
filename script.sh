@@ -17,7 +17,7 @@ echo "Logging in to the private registry..."
 echo "$REGISTRY_PASSWORD" | docker login "$REGISTRY_URL" -u "$REGISTRY_USERNAME" --password-stdin   2>/dev/null 
 
 echo "Pulling image $IMAGE_NAME..."
-OUTPUT=$(docker pull $REGISTRY_URL/$IMAGE_NAME)
+OUTPUT=$(docker pull $REGISTRY_URL/$IMAGE_NAME:$LOCAL_TAG 2>&1)
 
 # Check if the image was updated or already up to date
 if echo "$OUTPUT" | grep -q "Downloaded newer image"; then
