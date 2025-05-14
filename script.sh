@@ -17,7 +17,15 @@ echo "Logging in to the private registry..."
 echo "$REGISTRY_PASSWORD" | docker login "$REGISTRY_URL" -u "$REGISTRY_USERNAME" --password-stdin   2>/dev/null 
 
 echo "Pulling image $IMAGE_NAME..."
-OUTPUT=$(docker pull $REGISTRY_URL/$IMAGE_NAME:$LOCAL_TAG)
+OUTPUT=$(docker pull $REGISTRY_URL/$IMAGE_NAME:$LOCAL_TAG 2>&1)
+STATUS=$?
+
+# Check if the docker pull command failed
+if [ $STATUS -ne 0 ]; then
+    echo "Error: Failed to pull the image from the registry. Status code: $STATUS"
+    echo "$OUTPUT"
+    exit $STATUS
+fi
 
 # Check if there was an error during the pull
 if echo "$OUTPUT" | grep -q "Error"; then

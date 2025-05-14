@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_container
+    ports:
+      - "8033:80"
+    restart: always
