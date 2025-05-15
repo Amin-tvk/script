@@ -16,7 +16,8 @@ fi
 
 IMAGE_NAME="$1"
 LOCAL_TAG="$2"
-
+echo "IMAGE_NAME: $IMAGE_NAME"
+echo "LOCAL_TAG: $LOCAL_TAG"
 # Check if variables are empty after assignment
 if [ -z "$IMAGE_NAME" ] || [ -z "$LOCAL_TAG" ]; then
     echo "Error: IMAGE_NAME or LOCAL_TAG cannot be empty."
