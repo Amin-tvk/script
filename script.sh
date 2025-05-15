@@ -9,14 +9,19 @@ fi
 set -x # Enable debugging
 # تنظیمات
 if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Error: Both IMAGE_NAME and LOCAL_TAG must be provided."
     echo "Usage: $0 <IMAGE_NAME> <LOCAL_TAG>"
-    echo IMAGE_NAME="$1"
-    echo LOCAL_TAG="$2"
     exit 1
 fi
 
 IMAGE_NAME="$1"
 LOCAL_TAG="$2"
+
+# Check if variables are empty after assignment
+if [ -z "$IMAGE_NAME" ] || [ -z "$LOCAL_TAG" ]; then
+    echo "Error: IMAGE_NAME or LOCAL_TAG cannot be empty."
+    exit 1
+fi
 DOCKER_COMPOSE_FILE="docker-compose.yml"
 
 # دریافت تگ جدید از رجیستری
