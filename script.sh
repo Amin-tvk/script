@@ -10,6 +10,8 @@ set -x # Enable debugging
 # تنظیمات
 if [ -z "$1" ] || [ -z "$2" ]; then
     echo "Usage: $0 <IMAGE_NAME> <LOCAL_TAG>"
+    echo IMAGE_NAME="$1"
+    echo LOCAL_TAG="$2"
     exit 1
 fi
 
