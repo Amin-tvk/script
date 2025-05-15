@@ -8,7 +8,7 @@ else
 fi
 set -x # Enable debugging
 # تنظیمات
-IMAGE_NAME="nginx"
+IMAGE_NAME="mentra_backend"
 LOCAL_TAG="prod"
 DOCKER_COMPOSE_FILE="docker-compose.yml"
 
