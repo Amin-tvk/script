@@ -8,8 +8,13 @@ else
 fi
 set -x # Enable debugging
 # تنظیمات
-IMAGE_NAME="mentra_backend"
-LOCAL_TAG="prod"
+if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: $0 <IMAGE_NAME> <LOCAL_TAG>"
+    exit 1
+fi
+
+IMAGE_NAME="$1"
+LOCAL_TAG="$2"
 DOCKER_COMPOSE_FILE="docker-compose.yml"
 
 # دریافت تگ جدید از رجیستری
