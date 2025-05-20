@@ -24,7 +24,6 @@ if [ -z "$IMAGE_NAME" ] || [ -z "$LOCAL_TAG" ]; then
 fi
 DOCKER_COMPOSE_FILE="docker-compose.yml"
 
-# دریافت تگ جدید از رجیستری
 echo "Logging in to the private registry..."
 echo "$REGISTRY_PASSWORD" | docker login "$REGISTRY_URL" -u "$REGISTRY_USERNAME" --password-stdin   2>/dev/null 
 
