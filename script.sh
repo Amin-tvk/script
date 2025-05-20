@@ -7,7 +7,6 @@ else
     exit 1
 fi
 set -x # Enable debugging
-# تنظیمات
 if [ -z "$1" ] || [ -z "$2" ]; then
     echo "Error: Both IMAGE_NAME and LOCAL_TAG must be provided."
     echo "Usage: $0 <IMAGE_NAME> <LOCAL_TAG>"
