@@ -28,7 +28,7 @@ echo "Logging in to the private registry..."
 echo "$REGISTRY_PASSWORD" | docker login "$REGISTRY_URL" -u "$REGISTRY_USERNAME" --password-stdin   2>/dev/null 
 
 echo "Pulling image $IMAGE_NAME..."
-OUTPUT=$(docker pull $REGISTRY_URL/$IMAGE_NAME:$LOCAL_TAG )
+OUTPUT=$(docker pull $IMAGE_NAME:$LOCAL_TAG )
 STATUS=$?
 
 # Check if the docker pull command failed
