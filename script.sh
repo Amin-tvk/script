@@ -52,4 +52,5 @@ if echo "$OUTPUT" | grep -q "Downloaded newer image"; then
     docker compose -f "$DOCKER_COMPOSE_FILE" up -d
 else
     echo "Image is already up to date. No need to restart."
+    exit 2
 fi
